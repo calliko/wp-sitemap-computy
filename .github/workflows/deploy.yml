@@ -2,22 +2,19 @@ name: Deploy to WordPress.org
 on:
   push:
     tags:
-      - 'v*'  # Запускается при создании тегов типа v1.0.0, v2.1.0
-
+      - "*"
 jobs:
-  deploy:
+  tag:
+    name: New tag
     runs-on: ubuntu-latest
     steps:
-      # Шаг 1: Забрать код из репозитория
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Важно: забирает всю историю для работы с тегами
-
-      # Шаг 2: Загрузить плагин в WordPress.org
+      - uses: actions/checkout@master
+      - name: Build # Remove or modify this step as needed
+        run: |
+          npm install
+          npm run build
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          # Если slug плагина отличается от названия репозитория:
-          SLUG: wp-sitemap-computy  # Замените на ваш slug из WordPress.org
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
