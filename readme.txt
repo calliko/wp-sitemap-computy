@@ -4,7 +4,7 @@ Donate link: https://sobe.ru/na/kompyuti_na_podderzhku_plagina_computy_for_plugi
 Tags: sitemap, disable sitemap
 Requires at least:  4.1
 Tested up to:  6.8
-Stable tag: 1.7
+Stable tag: 1.8
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,6 +29,9 @@ This functionality does not imply settings and all pages are displayed in the si
 
 
 == Changelog ==
+
+= 1.8 - 31.12.2025 =
+* Updated to current version
 
 = 1.6 - 19.03.2024 =
 * Updated to current version

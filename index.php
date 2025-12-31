@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:   WP Sitemap Computy
- * Version:       1.7
+ * Version:       1.8
  * Text Domain:   wp-sitemap-computy
  * Plugin URI:    https://computy.ru/blog/
  * Description: This functionality does not imply settings and all pages are displayed in the sitemap.
@@ -15,7 +15,7 @@ https://make.wordpress.org/core/2020/07/22/new-xml-sitemaps-functionality-in-wor
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 define( 'WP_SITEMAP_COMPUTY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WP_SITEMAP_COMPUTY_VERSION', '1.7');
+define( 'WP_SITEMAP_COMPUTY_VERSION', '1.8');
 
 /*Страница админки*/
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
