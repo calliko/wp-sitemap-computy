@@ -80,7 +80,7 @@ This plugin disables the built-in systemmap.', 'wp-sitemap-computy') ?>
             <form action="options.php" method="POST">
                 <?php
                 settings_fields('option_group_sitemap');     // скрытые защитные поля
-                do_settings_sections('sitemap_page'); // секции с настройками (опциями). У нас она всего одна 'section_id'
+                do_settings_sections('sitemap_page'); // Секции с настройками (опциями). У нас она всего одна 'section_id'
                 submit_button();
                 ?>
             </form>
