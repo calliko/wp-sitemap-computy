@@ -18,3 +18,9 @@ jobs:
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SLUG: "wp-sitemap-computy"
+        with:
+              # Явно указываем assets директорию
+              assets-dir: ".wordpress-org"
+              # Генерируем zip архив
+              generate-zip: true
