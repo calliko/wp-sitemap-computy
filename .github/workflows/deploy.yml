@@ -2,25 +2,40 @@ name: Deploy to WordPress.org
 on:
   push:
     tags:
-      - "v*"
+      - "*"  # Все теги
+
 jobs:
-  tag:
-    name: New tag
+  deploy:
+    name: Deploy to WordPress.org
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Build # Remove or modify this step as needed
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        id: get_version
         run: |
-          npm install
+          # Получаем имя тега без префикса refs/tags/
+          VERSION="${GITHUB_REF#refs/tags/}"
+          # Удаляем префикс 'v' если есть
+          VERSION="${VERSION#v}"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Extracted version: ${VERSION}"
+
+      - name: Build
+        run: |
+          npm ci
           npm run build
+
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          slug: "wp-sitemap-computy"
+          version: ${{ steps.get_version.outputs.version }}
+          assets-dir: ".wordpress-org"
+          generate-zip: true
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SLUG: "wp-sitemap-computy"
-        with:
-              # Явно указываем assets директорию
-              assets-dir: ".wordpress-org"
-              # Генерируем zip архив
-              generate-zip: true
